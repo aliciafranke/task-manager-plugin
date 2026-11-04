@@ -1,0 +1,101 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "my-task-manager-server",
+  "version": "1.0.0",
+  "description": "A simple task manager that helps users organize and track everyday tasks.",
+  "author": {
+    "name": "Alicia Franke",
+    "email": "personalmail0916@yahoo.com",
+    "url": "https://task-manager-mcp-server.replit.app"
+  },
+  "homepage": "https://task-manager-mcp-server.replit.app/",
+  "keywords": [
+    "tasks",
+    "task management",
+    "productivity",
+    "tracking"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Task Manager",
+        "shortDescription": "Organize everyday tasks",
+        "longDescription": "Efficient Task Manager helps users organize and track everyday tasks through ChatGPT. It provides a simple way to keep track of what needs to get done.",
+        "developerName": "Alicia Franke",
+        "category": "Productivity",
+        "capabilities": [
+          "Create tasks",
+          "View and search tasks",
+          "Update task details",
+          "Mark tasks as complete",
+          "Delete tasks"
+        ],
+        "websiteURL": "https://task-manager-mcp-server.replit.app",
+        "defaultPrompt": [
+          "Show me my tasks"
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png",
+        "supportURL": "https://task-manager-mcp-server.replit.app/support",
+	"privacyPolicyURL": "https://task-manager-mcp-server.replit.app/privacy",
+	"termsOfServiceURL": "https://task-manager-mcp-server.replit.app/terms"
+      },
+      "review": {
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Browse every lesson",
+              "prompt": "Show me all API Lessons",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with no query and lists every lesson: upcoming ones first with dates and signup links, then recordings."
+            },
+            {
+              "description": "Find lessons for an audience",
+              "prompt": "I want API Lessons for Product Managers",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with a query such as \"product manager\" and returns API product management lessons, such as \"The Double Life of the API Product Manager\" and \"How to break into API Product Management\", with their courses."
+            },
+            {
+              "description": "Find upcoming live training on a topic",
+              "prompt": "I'm searching for live training on MCP",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with status Scheduled and query \"MCP\" and returns upcoming MCP lessons with their dates and signup links."
+            },
+            {
+              "description": "Find a recording on a topic",
+              "prompt": "Is there a recording about agentic payments?",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with status On Demand and query \"payments\" and returns \"Agentic Payments: How AI Agents Move Money\" and \"Building APIs That Move Money\" with their recording links."
+            },
+            {
+              "description": "Find the course that goes deeper",
+              "prompt": "I watched the MCP product manager lesson. Which course goes deeper?",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with a query such as \"MCP product manager\", finds \"Become an MCP Product Manager & Build Agent Experiences\" and names its course, \"Build What Agents Want: MCP, APIs, Skills & Plugins\", with its link."
+            }
+          ],
+          "negative": [
+            {
+              "description": "General design question, not a lesson search",
+              "prompt": "How to design a UI"
+            },
+            {
+              "description": "Product management basics, not a lesson search",
+              "prompt": "Learn the basics of Product Management"
+            },
+            {
+              "description": "Other instructors' lessons are out of scope",
+              "prompt": "All the lessons on Maven"
+            }
+          ]
+        },
+        "demo_recording_url": "https://www.level250.com/s/APILessons.mp4"
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Version 1.0.0: Initial release of Efficient Task Manager."
+      }
+    }
+  }
+}
